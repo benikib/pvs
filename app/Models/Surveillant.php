@@ -13,4 +13,8 @@ class Surveillant extends Model
         'examen_id' ,
         
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

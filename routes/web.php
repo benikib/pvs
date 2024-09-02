@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RepportingController;
+use App\Http\Controllers\SurveillantController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,8 +33,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/suveillants/{id}', [RepportingController::class, 'surveillants'])->name("surveillants");
         Route::post('/suveillants/store', [RepportingController::class, 'surveillant_store'])->name("surveillant_store");
         Route::get('/pvs', [RepportingController::class, 'pvx'])->name("pvx");
-    
+        Route::get('/users/programme/{id}', [SurveillantController::class, 'programme'])->name("programme");
     }); 
+    Route::get('/users/pvs', [SurveillantController::class, 'index'])->name("");
+    Route::get('/users/pvs/{id}/{ex}', [SurveillantController::class, 'pv'])->name("pv.soumis");
+    Route::get('/users/programme/{id}', [SurveillantController::class, 'programme'])->name("programme");
+  
 
 
 });

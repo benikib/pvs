@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Surveillant;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class SurveillantController extends Controller
@@ -12,15 +14,34 @@ class SurveillantController extends Controller
      */
     public function index()
     {
-        //
+        $admins = Admin::with('user')->get();
+        $i = 1;
+        return view("soumispv.index", compact("admins",  "i"));
+
+    }
+    public function programme($id)
+    {
+        $examens = DB::table('examens')
+        ->join('surveillants', 'examens.id', '=', 'surveillants.examen_id')
+        ->where('surveillants.user_id', '=', $id)
+        ->select('examens.*')
+        ->get();
+        $i=1;
+    
+        return view("soumispv.programme", compact("examens",  "i"));
+
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function pv($id,$ex)
     {
-        //
+        
+        $admins = Admin::with('user')->get();
+        $i = 1;
+        return view("soumispv.pv", compact("admins",  "i"));
+
     }
 
     /**
