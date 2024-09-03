@@ -138,7 +138,7 @@
                           </td>
                           <td class="size-px whitespace-nowrap">
                             <div class="px-6 py-3">
-                              <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $surveillant->timestamp }}</span>
+                              <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $surveillant->created_at }}</span>
                             </div>
                           </td>
                           <td class="size-px whitespace-nowrap">

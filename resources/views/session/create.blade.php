@@ -24,9 +24,19 @@
     <input type="text" name="semestre" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 dark:text-neutral-400" placeholder="Semestre" autofocus="">
   </div>
   <div class="p-4 overflow-y-auto">
+    <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Année académique</label>
+    <select name="an_academique" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 dark:text-neutral-400">
+        @for ($year = now()->year; $year <= now()->year + 10; $year++)
+            <option value="{{ $year }}-{{ $year + 1 }}">{{ $year }}-{{ $year + 1 }}</option>
+        @endfor
+    </select>
+</div>
+
+
+  {{-- <div class="p-4 overflow-y-auto">
     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">année académique</label>
     <input type="date" name="an_academique" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 dark:text-neutral-400" placeholder="année académique" autofocus="">
-  </div>
+  </div> --}}
 
 <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
   <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" data-hs-overlay="#hs-focus-management-modal">

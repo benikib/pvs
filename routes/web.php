@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/pvs', [SurveillantController::class, 'index'])->name("");
     Route::get('/users/pvs/{id}/{ex}', [SurveillantController::class, 'pv'])->name("pv.soumis");
     Route::get('/users/programme/{id}', [SurveillantController::class, 'programme'])->name("programme");
+    Route::post('/pv/store', [SurveillantController::class, 'pv_store'])->name("soumis.stor");
   
 
 

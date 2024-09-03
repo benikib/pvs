@@ -8,4 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class pv extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'local' ,
+        'dure' ,
+        'hcom' ,
+        'hfin' ,
+        'agents' ,
+        'hdebut' ,
+        'hcloture' ,
+        'n_etudiant_enregistre' ,
+        'n_depot' ,
+        'description' ,
+        'examen_id' ,
+        
+        
+    ];
+
+   
 }
