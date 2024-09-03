@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('promotion')->nullable;
             $table->string('mention')->nullable;
             $table->string('semestre')->nullable;
-            $table->date('an_academique')->nullable;
+            $table->string('an_academique')->nullable;
             
             $table->timestamps();
         });

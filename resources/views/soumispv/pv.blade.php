@@ -55,7 +55,7 @@
             <div class="flex flex-col sm:flex-row gap-3">
             @for($i = 2; $i < 5; $i++)
             <select  name="{{ "agent".$i }}" class="py-2 px-3 pe-9 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-                <option value='0'> Surveillant {{ $i }}  </option>
+                
                  @foreach ($agents as $agent )
                     <option value={{ $agent->id  }}>{{ $agent->name }} </option>
                  
@@ -75,7 +75,7 @@
           </label>
           <div class="flex flex-col sm:flex-row gap-3">
             <input  name="hd" type="time" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="heure  de début">
-            <input name="n_etudiant" type="text" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="nombre d etudiant au debut ">
+            <input name="n_etudiant" type="number" class="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="nombre d etudiant au debut ">
           </div>
           <div class="mt-2 space-y-3">
             

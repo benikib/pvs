@@ -16,7 +16,7 @@ class pv extends Model
         'agents' ,
         'hdebut' ,
         'hcloture' ,
-        'n_etudiant_enregistre' ,
+        'n_etudiants_enregistre' ,
         'n_depot' ,
         'description' ,
         'examen_id' ,

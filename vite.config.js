@@ -5,9 +5,10 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                'node_modules/preline/dist/*.js',
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'node_modules/preline/dist/*.js',
+                
 
             ],
             refresh: true,

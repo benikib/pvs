@@ -47,11 +47,13 @@ class SurveillantController extends Controller
         $session = SessionExamen::findOrFail($examen->session_examens_id);
         $agents =  DB::table('users')
         ->leftJoin('surveillants', 'users.id', '=', 'surveillants.user_id')
-        ->where('surveillants.examen_id', '=', $id)
-        ->orWhereNull('surveillants.user_id')
+        ->where('surveillants.examen_id', '=', $ex)
+        
         ->select('users.*')
         ->get();
         $user = User::findOrFail(Auth::user()->id);
+       
+        
        
     //    dd($user);
         return view("soumispv.pv",compact("session",'examen','agents','user'));
@@ -67,22 +69,33 @@ class SurveillantController extends Controller
             $validated = $request->validate([
             //'intitule' => 'required',
             ]);
-            $json_agent = json_encode([
-                "agent1" => $request->agent1,
-                "agent2" => $request->agent2,
-                "agent3" => $request->agent3,
-                "agent4" => $request->agent4,
-            ]);
-            // dd($json_agent);
+         // Récupération des IDs des agents depuis la requête
+$agentIds = [
+    $request->agent1,
+    $request->agent2,
+    $request->agent3,
+    $request->agent4,
+];
+
+// Filtrer les IDs non nuls pour éviter les erreurs de requête
+$agentIds = array_filter($agentIds);
+
+// Récupération des agents depuis la base de données
+$agents = DB::table('users')->whereIn('id', $agentIds)->get();
+
+// Encodage en JSON
+$json_agents = json_encode($agents);
+
+            //dd($request);
             pv::create([
                 'local'=>$request->local ,
                 'dure'=>$request->dure ,
                 'hcom'=>$request->hcom ,
                 'hfin'=>$request->hfin ,
-                'agents'=>$json_agent ,
+                'agents'=>$json_agents ,
                 'hdebut'=>$request->hd ,
                 'hcloture'=>$request->hcloture ,
-                'n_etudiant_enregistre'=>$request->n_etudiant ,
+                'n_etudiants_enregistre'=>$request->n_etudiant ,
                 'n_depot'=>$request->n_etudiants_depot ,
                 'description'=>$request->description ,
                 'examen_id' =>$request->examen_id,

@@ -25,20 +25,21 @@ Route::middleware('auth')->group(function () {
         Route::post('/session/store', [RepportingController::class, 'session_store'])->name("session_store");
         Route::get('/session/{id}/examens', [RepportingController::class, 'session_examens'])->name("session.examen");
         Route::get('/session/{id}', [RepportingController::class, 'session_delete'])->name("session.delete");
-        Route::get('/session/examens', [RepportingController::class, 'session_store'])->name("examen_store");
+        // Route::get('/session/examens', [RepportingController::class, 'session_store'])->name("examen_store");
     
         Route::get('/examens', [RepportingController::class, 'examens'])->name("examens");
-        Route::post('/session/examen/store', [RepportingController::class, 'session_store'])->name("examen_store");
+        Route::post('/session/examen/store', [RepportingController::class, 'examen_store'])->name("examen_store");
     
         Route::get('/suveillants/{id}', [RepportingController::class, 'surveillants'])->name("surveillants");
         Route::post('/suveillants/store', [RepportingController::class, 'surveillant_store'])->name("surveillant_store");
-        Route::get('/pvs', [RepportingController::class, 'pvx'])->name("pvx");
-        Route::get('/users/programme/{id}', [SurveillantController::class, 'programme'])->name("programme");
+        Route::get('/pvs/{id}', [RepportingController::class, 'pvx'])->name("pvx");
+        
+        Route::get('/users/surveillant/{id}', [RepportingController::class, 'surveillant_delete'])->name("surveillant.delete");
     }); 
     Route::get('/users/pvs', [SurveillantController::class, 'index'])->name("");
     Route::get('/users/pvs/{id}/{ex}', [SurveillantController::class, 'pv'])->name("pv.soumis");
     Route::get('/users/programme/{id}', [SurveillantController::class, 'programme'])->name("programme");
-    Route::post('/pv/store', [SurveillantController::class, 'pv_store'])->name("soumis.stor");
+    Route::post('/users/pvs/store', [SurveillantController::class, 'pv_store'])->name("soumis.stor");
   
 
 

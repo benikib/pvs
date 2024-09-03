@@ -15,7 +15,16 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
+        <div>
+            <x-input-label for="grade" :value="__('grade')" />
+            <x-text-input id="grade" class="block mt-1 w-full" type="text" name="grade" :value="old('grade')" required autofocus autocomplete="grade" />
+            <x-input-error :messages="$errors->get('grade')" class="mt-2" />
+        </div>
+        <div>
+            <x-input-label for="grade" :value="__('Filiere')" />
+            <x-text-input id="filiere" class="block mt-1 w-full" type="text" name="filiere" :value="old('filiere')" required autofocus autocomplete="filiere" />
+            <x-input-error :messages="$errors->get('filiere')" class="mt-2" />
+        </div>
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

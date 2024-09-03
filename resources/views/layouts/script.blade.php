@@ -4,15 +4,15 @@
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script src="https://preline.co/assets/js/hs-apexcharts-helpers.js"></script>
-<script src=></script>
-<script src="{{ Vite::asset('node_modules/datatables.net/js/dataTables.min.js') }}"></script>
-<script src="{{  Vite::asset('node_modules/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{  Vite::asset('node_modules/jszip/dist/jszip.min.js') }}"></script>
-<script src="{{ Vite::asset('node_modules/pdfmake/build/pdfmake.min.js') }}"></script>
-<script src="{{ Vite::asset('node_modules/pdfmake/build/vfs_fonts.js') }}"></script>
-<script src="{{ Vite::asset('node_modules/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ Vite::asset('node_modules/node_modules/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
 
+ <!-- DataTables and extensions -->
+ <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+ <script src="https://cdn.datatables.net/buttons/1.7.2/js/dataTables.buttons.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.8/pdfmake.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.8/vfs_fonts.js"></script>
+ <script src="https://cdn.datatables.net/buttons/1.7.2/js/buttons.html5.min.js"></script>
+ <script src="https://cdn.datatables.net/buttons/1.7.2/js/buttons.print.min.js"></script>
 
 
 <script>

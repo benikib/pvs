@@ -10,8 +10,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+
 class RepportingController extends Controller
 {
+    
     public function admin(Request $request)
     {
         $admins = Admin::with('user')->get();
@@ -34,6 +36,7 @@ class RepportingController extends Controller
         return view("examens.index",compact("admins",  "i"));
     }
     public function examen_store(Request $request){
+        
         try {
             $validated = $request->validate([
             'intitule' => 'required',
@@ -44,7 +47,7 @@ class RepportingController extends Controller
                 'n_local' => $request->n_local,
                 'date' => $request->date,
                 'heure' => $request->heure,
-                'session_examens_id' => 1,
+                'session_examens_id' => $request->session_examens_id,
             ]);
         return redirect()->back()->with('success', 'creation avec success');
         } catch (\Throwable $th) {
@@ -137,7 +140,13 @@ public function session()
 
     public function surveillants($id){
         $examen = Examen::findOrFail($id);
-        $surveillants = Surveillant::all();
+        $surveillants = DB::table('users')
+        ->leftJoin('surveillants', 'users.id', '=', 'surveillants.user_id')
+        ->where('surveillants.examen_id', '=', $id)
+        
+        ->select('users.*', 'surveillants.id as surveillant_id')
+        ->get();
+    
         $users_dispo = DB::table('users')
         ->leftJoin('surveillants', 'users.id', '=', 'surveillants.user_id')
         ->where('surveillants.examen_id', '!=', $id)
@@ -149,6 +158,16 @@ public function session()
 
         return view("surveillants.index",compact("examen","users_dispo","surveillants"));
 
+    }
+    public function surveillant_delete($id){
+        
+        $project = Surveillant::findOrFail($id);
+
+        // Supprimer le projet
+        $project->delete();
+
+        // Rediriger avec un message de succès
+        return redirect()->back()->with('success', 'creation avec success');
     }
     public function surveillant_store(Request $request){
 
@@ -180,7 +199,17 @@ public function session()
 
 
     }
-    public function pvx(){
-        return view("pvx.index");
+    public function pvx($id){
+
+     $examen = Examen::findOrFail($id);
+     $session = SessionExamen::findOrFail($examen->id);
+     $pvs = DB::table('pvs')
+     ->where('pvs.examen_id', '=', $id)
+     ->get();
+     
+     
+    
+    
+        return view("pvx.index", compact('session','examen','pvs'));
     }
 }

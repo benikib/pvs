@@ -25,7 +25,7 @@
 
                     <div>
                       <div class="inline-flex gap-x-2">
-                        <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" href="{{ route("pvx") }}">
+                        <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" href="{{ route("pvx",['id'=>$examen->id]) }}">
                           PV
                         </a>
 
@@ -56,7 +56,7 @@
                         <th scope="col" class="px-6 py-3 text-start">
                           <div class="flex items-center gap-x-2">
                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
-                              Grade et Telephone
+                              Grade 
                             </span>
                           </div>
                         </th>
@@ -64,7 +64,7 @@
                         <th scope="col" class="px-6 py-3 text-start">
                           <div class="flex items-center gap-x-2">
                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
-                              Status
+                              Filiere
                             </span>
                           </div>
                         </th>
@@ -72,7 +72,7 @@
                         <th scope="col" class="px-6 py-3 text-start">
                           <div class="flex items-center gap-x-2">
                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
-                              actif
+                              Date
                             </span>
                           </div>
                         </th>
@@ -80,7 +80,7 @@
                         <th scope="col" class="px-6 py-3 text-start">
                           <div class="flex items-center gap-x-2">
                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
-                              date
+                              action
                             </span>
                           </div>
                         </th>
@@ -88,7 +88,7 @@
                         <th scope="col" class="px-6 py-3 text-end"></th>
                       </tr>
                     </thead>
-                    @forelse($users_dispo as  $surveillant)
+                    @forelse($surveillants as  $surveillant)
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
 
                         <tr>
@@ -112,30 +112,17 @@
                           </td>
                           <td class="h-px w-72 whitespace-nowrap">
                             <div class="px-6 py-3">
-                              {{-- <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">{{ $surveillant->grade }}</span> --}}
-                              <span class="block text-sm text-gray-500 dark:text-neutral-500">+243  </span>
+                              <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">{{ $surveillant->grade }}</span>
+                              
                             </div>
                           </td>
                           <td class="size-px whitespace-nowrap">
                             <div class="px-6 py-3">
-                              <span class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                                <svg class="size-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                                </svg>
-                                warning
-                              </span>
-                            </div>
-                          </td>
-                          <td class="size-px whitespace-nowrap">
-                            <div class="px-6 py-3">
-                              <div class="flex items-center gap-x-3">
-                                <span class="text-xs text-gray-500 dark:text-neutral-500">5/5</span>
-                                <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden dark:bg-neutral-700">
-                                  <div class="flex flex-col justify-center overflow-hidden bg-gray-800 dark:bg-neutral-200" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+                                <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">{{ $surveillant->filiere }}</span>
+                                
                               </div>
-                            </div>
                           </td>
+                          
                           <td class="size-px whitespace-nowrap">
                             <div class="px-6 py-3">
                               <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $surveillant->created_at }}</span>
@@ -143,8 +130,8 @@
                           </td>
                           <td class="size-px whitespace-nowrap">
                             <div class="px-6 py-1.5">
-                              <a class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500" href="#">
-                                Edit
+                              <a  href="{{route('surveillant.delete', ['id'=> $surveillant->surveillant_id])}}" class="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500" >
+                                Supprimer
                               </a>
                             </div>
                           </td>

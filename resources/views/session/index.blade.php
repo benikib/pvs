@@ -205,8 +205,8 @@
                     <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $session->promotion }}</td>
                     <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $session->mention }}</td>
                     <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $session->semestre }}</td>
-                    <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 "> 
-                        {{ \Carbon\Carbon::parse($session->an_academique)->format('Y') . '-' . \Carbon\Carbon::parse($session->an_academique)->addYear()->format('Y') }}
+                    <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 "> {{$session->an_academique}}
+                       
                     
                     </td>
                     <td class="p-3 whitespace-nowrap text-end text-sm font-medium">
