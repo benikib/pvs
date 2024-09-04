@@ -1,11 +1,78 @@
-@extends("layouts.default")
+@extends('layouts.default')
+
 @section("content")
 <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
     {{-- moadal --}}
-    <button type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal" data-hs-overlay="#hs-focus-management-modal">
-       Ajouter
-      </button>
-    @include('users.create')
+   
+    <div class="p-4 md:p-5 min-h-[410px] flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">
+        <!-- Header -->
+        <div class="flex justify-between items-center">
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          <canvas id="myChart" width="800" height="400"></canvas>
+          
+          <script>
+            window.addEventListener("load", () => {
+                // Récupérer les données PHP
+                let dataFromPHP = <?php echo json_encode($totalsurveillances); ?>;
+                
+                // Préparer les données pour Chart.js
+                let labels = dataFromPHP.map(item => `Session ${item.session_id}`);
+                let data = dataFromPHP.map(item => item.total);
+                
+                // Créer le graphique avec Chart.js
+                const ctx = document.getElementById('myChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar', // Type du graphique
+                    data: {
+                        labels: labels, // Les sessions comme étiquettes sur l'axe des x
+                        datasets: [{
+                            label: 'Total Assignments',
+                            data: data, // Nombre total de fois que le surveillant a participé
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return `Assignments: ${tooltipItem.raw}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Session ID' // Titre pour l'axe des x
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Total Assignments' // Titre pour l'axe des y
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+          </script>
+        </div>
+        <!-- End Header -->
+      
+        <div id="hs-multiple-bar-charts"></div>
+      </div>
+      
     {{-- @include('admin.store.archiver') --}}
 
     {{-- modal --}}
@@ -146,7 +213,7 @@
 
                     <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
                       <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
-                       nom
+                       Cours
                         <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <path class="hs-datatable-ordering-asc:text-blue-600 dark:hs-datatable-ordering-asc:text-blue-500" d="m7 15 5 5 5-5"></path>
                           <path class="hs-datatable-ordering-desc:text-blue-600 dark:hs-datatable-ordering-desc:text-blue-500" d="m7 9 5-5 5 5"></path>
@@ -156,30 +223,52 @@
 
                     <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
                       <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
-                        Address email
+                        Date
                         <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <path class="hs-datatable-ordering-asc:text-blue-600 dark:hs-datatable-ordering-asc:text-blue-500" d="m7 15 5 5 5-5"></path>
                           <path class="hs-datatable-ordering-desc:text-blue-600 dark:hs-datatable-ordering-desc:text-blue-500" d="m7 9 5-5 5 5"></path>
                         </svg>
                       </div>
                     </th>
+                    
+                    <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
+                        <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
+                         Heure
+                          <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path class="hs-datatable-ordering-asc:text-blue-600 dark:hs-datatable-ordering-asc:text-blue-500" d="m7 15 5 5 5-5"></path>
+                            <path class="hs-datatable-ordering-desc:text-blue-600 dark:hs-datatable-ordering-desc:text-blue-500" d="m7 9 5-5 5 5"></path>
+                          </svg>
+                        </div>
+                      </th>
+                      
+                    <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
+                        <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
+                         nombre de locaux
+                          <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path class="hs-datatable-ordering-asc:text-blue-600 dark:hs-datatable-ordering-asc:text-blue-500" d="m7 15 5 5 5-5"></path>
+                            <path class="hs-datatable-ordering-desc:text-blue-600 dark:hs-datatable-ordering-desc:text-blue-500" d="m7 9 5-5 5 5"></path>
+                          </svg>
+                        </div>
+                      </th>
 
                     <th scope="col" class="py-2 px-3 text-end font-normal text-sm text-gray-500 --exclude-from-ordering dark:text-neutral-500">Action</th>
                   </tr>
                 </thead>
 
                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
-                    @forelse ($users as $user )
+                    @forelse ($examens as $examen )
 
 
                   <tr>
                     <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $i++ }}</td>
-                    <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $user->name }}</td>
-                    <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $user->email }}</td>
+                    <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $examen->intitule }}</td>
+                    <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $examen->date }}</td>
+                    <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $examen->heure }}</td>
+                    <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $examen->n_local }}</td>
                     <td class="p-3 whitespace-nowrap text-end text-sm font-medium">
                         <div class="flex space-x-2">
                             <!-- Bouton Voir -->
-                            <a href={{route('statistique', ['id'=> $user->id])}} title="Voir"
+                            <a href="{{route('pv.soumis', ['ex'=> $examen->id, 'id'=>Auth::user()->id])}}" title="Voir"
                                 class="inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white border border-gray-200 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <i class="fas fa-eye"></i>
                             </a>
@@ -191,7 +280,7 @@
                             </a>
 
                             <!-- Bouton Archiver -->
-                            <a href="{{route('admin.delete', ['id'=> $user->id])}} aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal-archiver" data-hs-overlay="#hs-focus-management-modal-archiver" title="Archiver"
+                            <a href="{{route('admin.delete', ['id'=> $examen->id])}}" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal-archiver" data-hs-overlay="#hs-focus-management-modal-archiver" title="Archiver"
                                 class="inline-flex items-center justify-center w-8 h-8 text-white bg-red-600 border border-transparent rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                                 project="Voulez-vous supprimer le Projet" data-toggle="modal" data-target="#supprimer">
                                 <i class="fas fa-archive"></i>

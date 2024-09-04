@@ -67,6 +67,21 @@
             </div>
           </div>
         </div>
+        <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">
+            <div class="p-4 md:p-5">
+              <div class="flex items-center gap-x-2">
+                <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">
+                  Sessions
+                </p>
+              </div>
+  
+              <div class="mt-1 flex items-center gap-x-2">
+                <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">
+                  {{ $users }}
+                </h3>
+              </div>
+            </div>
+          </div>
         <!-- End Card -->
 
         <!-- Card -->
@@ -299,5 +314,66 @@
       })();
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <canvas id="myChart" width="400" height="200"></canvas>
+  <script>
+    window.addEventListener("load", () => {
+        // Récupérer les données PHP
+        let dataFromPHP = <?php echo json_encode($t_sessions); ?>;
+        
+        // Préparer les données pour Chart.js
+        let labels = dataFromPHP.map(item => `${item.month}/${item.year}`);
+        let data = dataFromPHP.map(item => item.total_sessions);
+        
+        // Créer le graphique avec Chart.js
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line', // Type du graphique
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Sessions',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    fill: true, // Remplit la zone sous la ligne
+                    tension: 0.1 // Courbure de la ligne
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return `Sessions: ${tooltipItem.raw}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Month/Year'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Total Sessions'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
 
 @endsection

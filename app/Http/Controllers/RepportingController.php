@@ -21,6 +21,26 @@ class RepportingController extends Controller
         return view("admin.index", compact("admins",  "i"));
 
     }
+    public function statistique($id)
+    {
+        $totalsurveillances = DB::table('surveillants as s')
+    ->join('examens as e', 'e.id', '=', 's.examen_id')
+    ->join('session_examens as se', 'se.id', '=', 'e.session_examens_id')
+    ->where('s.user_id', '=', $id)
+    ->select(DB::raw('se.id as session_id, COUNT(*) as total'))
+    ->groupBy('se.id')
+    ->orderBy('total', 'desc')
+    ->get();
+        $examens = DB::table('examens')
+        ->join('surveillants', 'examens.id', '=', 'surveillants.examen_id')
+        ->where('surveillants.user_id', '=', $id)
+        ->select('examens.*')
+        ->get();
+        $i=1;
+    
+        return view("users.programme", compact("examens",  "i","totalsurveillances"));
+
+    }
     public function users(Request $request)
     {
         $users = User::all();
@@ -129,8 +149,11 @@ public function session()
     public function session_examens($id){
         // Trouver le projet par ID
         $session = SessionExamen::findOrFail($id);
-        $examens = Examen::all();
-        // Supprimer le projet
+        $examens = DB::table('examens')
+        ->where('examens.session_examens_id', '=', $session->id)
+        
+        ->select('examens.*')
+        ->get();
         $i = 1;
 
 

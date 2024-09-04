@@ -11,7 +11,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::middleware('auth')->group(function () {
+    Route::middleware('admin')->group(function () {
     
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -35,8 +35,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/pvs/{id}', [RepportingController::class, 'pvx'])->name("pvx");
         
         Route::get('/users/surveillant/{id}', [RepportingController::class, 'surveillant_delete'])->name("surveillant.delete");
+        Route::get('/user/statistique/{id}', [RepportingController::class, 'statistique'])->name("statistique");
     }); 
-    Route::get('/users/pvs', [SurveillantController::class, 'index'])->name("");
+    Route::get('/users/pvs/{id}', [SurveillantController::class, 'index'])->name("users.pvs");
     Route::get('/users/pvs/{id}/{ex}', [SurveillantController::class, 'pv'])->name("pv.soumis");
     Route::get('/users/programme/{id}', [SurveillantController::class, 'programme'])->name("programme");
     Route::post('/users/pvs/store', [SurveillantController::class, 'pv_store'])->name("soumis.stor");

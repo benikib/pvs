@@ -17,12 +17,23 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $admin = Admin::where('user_id', Auth::user()->id)->first();
-        if ($admin) {
-            // L'utilisateur n'est pas un administrateur, redirigez-le vers une page d'erreur ou une autre action
-            return $request->expectsJson() ? null : route('dashboard');
+        // Vérifier si l'utilisateur est connecté
+        $user = Auth::user();
+        
+        if (!$user) {
+            // Rediriger l'utilisateur non authentifié vers une page d'erreur ou une autre action
+            return redirect()->route('login');
         }
-
-        return $next($request);
+    
+        // Vérifier si l'utilisateur est un administrateur
+        $admin = Admin::where('user_id', $user->id)->first();
+    
+        if ($admin) {
+            // L'utilisateur est un administrateur, continuer la requête
+            return $next($request);
+        }
+    
+        // L'utilisateur n'est pas un administrateur, rediriger vers une autre page
+        return redirect()->route('users.pvs', ['id' => $user->id]);
     }
-}
+}    

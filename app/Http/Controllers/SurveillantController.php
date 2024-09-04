@@ -12,17 +12,43 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Date;
 
 class SurveillantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        $admins = Admin::with('user')->get();
+        $totalsurveillance = DB::table('surveillants')
+    ->where('surveillants.user_id', '=', $id)
+    ->select(DB::raw('count(*) as total'))
+    ->value('total');
+   // dd($totalsurveillances);
+    
+    $examens_restants = DB::table('examens')
+    ->join('surveillants', 'examens.id', '=', 'surveillants.examen_id')
+    ->where('surveillants.user_id', '=', $id)
+    ->where('examens.date', '>', Date::now()) 
+    ->select('examens.*')
+    ->count();
+    
+    $i=1;
+    $totalsurveillances = DB::table('surveillants as s')
+    ->join('examens as e', 'e.id', '=', 's.examen_id')
+    ->join('session_examens as se', 'se.id', '=', 'e.session_examens_id')
+    ->where('s.user_id', '=', $id)
+    ->select(DB::raw('se.id as session_id, COUNT(*) as total'))
+    ->groupBy('se.id')
+    ->orderBy('total', 'desc')
+    ->get();
+    
+
+    
+        
         $i = 1;
-        return view("soumispv.index", compact("admins",  "i"));
+        return view("soumispv.index", compact("i",'totalsurveillance','examens_restants','totalsurveillances'));
 
     }
     public function programme($id)
