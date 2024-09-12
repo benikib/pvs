@@ -24,7 +24,7 @@
   <meta property="og:image" content="https://preline.co/assets/img/og-image.png">
 
   <!-- Title -->
-  <title>Agency Demo Template Tailwind CSS | Preline UI, crafted with Tailwind CSS</title>
+  <title>pvs</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="https://preline.co/favicon.ico">
@@ -74,7 +74,7 @@
           </button>
         </div>
       </div>
-  
+
       @if (Route::has('login'))
         <nav class="-mx-3 flex flex-1 justify-end space-x-4">
           @auth
@@ -85,7 +85,7 @@
             <a href="{{ route('login') }}" class="inline-flex items-center gap-x-2 py-2 px-4 text-gray-200 bg-gray-700 hover:bg-gray-600 rounded-lg transition focus:outline-none">
               Connexion
             </a>
-  
+
             @if (Route::has('register'))
               <a href="{{ route('register') }}" class="inline-flex items-center gap-x-2 py-2 px-4 text-gray-200 bg-gray-700 hover:bg-gray-600 rounded-lg transition focus:outline-none">
                 Inscription
@@ -94,11 +94,11 @@
           @endauth
         </nav>
       @endif
-  
-      
+
+
     </nav>
   </header>
-  
+
   <!-- ========== END HEADER ========== -->
 
   <!-- ========== MAIN CONTENT ========== -->
@@ -117,7 +117,7 @@
         </div>
       </div>
       <!-- End Hero -->
-      
+
       <!-- Clients -->
       <div class="relative overflow-hidden pt-4 bg-neutral-900">
         <svg class="absolute -bottom-20 start-1/2 w-[1900px] transform -translate-x-1/2" width="2745" height="488" viewBox="0 0 2745 488" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -138,14 +138,14 @@
           <path d="M0.5 22.991C232.505 95.9276 853.749 219.81 1482.69 131.846C2111.63 43.8824 2585.54 126.715 2743.87 179.127" class="stroke-neutral-700/50" stroke="currentColor" />
           <path d="M0.5 1C232.505 73.9367 853.749 197.819 1482.69 109.855C2111.63 21.8914 2585.54 104.724 2743.87 157.136" class="stroke-neutral-700/50" stroke="currentColor" />
         </svg>
-      
-        
+
+
       </section>
-      
+
     <!-- End Case Stories -->
 
     <!-- Testimonials -->
-  
+
     <!-- End Testimonials -->
     <!-- Contact -->
     <div class="bg-neutral-900">
@@ -153,7 +153,7 @@
         <!-- Title -->
         <div class="max-w-3xl mb-10 lg:mb-14">
           <h2 class="text-white font-semibold text-2xl md:text-4xl md:leading-tight">Contact Nouss</h2>
-          
+
         </div>
         <!-- End Title -->
 
@@ -260,7 +260,7 @@
 
               <div class="mt-2">
                 <p class="text-xs text-neutral-500">
-                 
+
                 </p>
 
                 <p class="mt-5">
@@ -366,7 +366,7 @@
       <div class="w-full max-w-5xl px-4 xl:px-0 py-10 lg:pt-16 mx-auto">
         <div class="inline-flex items-center">
           <!-- Logo -->
-          
+
           <!-- End Logo -->
 
           <div class="border-s border-neutral-700 ps-5 ms-5">
@@ -381,7 +381,7 @@
 
 
       <!-- Templates Dropdown -->
-     
+
   <!-- JS PLUGINS -->
   <!-- Required plugins -->
   <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.js"></script>

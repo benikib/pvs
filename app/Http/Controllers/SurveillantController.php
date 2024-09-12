@@ -26,14 +26,14 @@ class SurveillantController extends Controller
     ->select(DB::raw('count(*) as total'))
     ->value('total');
    // dd($totalsurveillances);
-    
+
     $examens_restants = DB::table('examens')
     ->join('surveillants', 'examens.id', '=', 'surveillants.examen_id')
     ->where('surveillants.user_id', '=', $id)
-    ->where('examens.date', '>', Date::now()) 
+    ->where('examens.date', '>', Date::now())
     ->select('examens.*')
     ->count();
-    
+
     $i=1;
     $totalsurveillances = DB::table('surveillants as s')
     ->join('examens as e', 'e.id', '=', 's.examen_id')
@@ -43,10 +43,10 @@ class SurveillantController extends Controller
     ->groupBy('se.id')
     ->orderBy('total', 'desc')
     ->get();
-    
 
-    
-        
+
+
+
         $i = 1;
         return view("soumispv.index", compact("i",'totalsurveillance','examens_restants','totalsurveillances'));
 
@@ -59,7 +59,7 @@ class SurveillantController extends Controller
         ->select('examens.*')
         ->get();
         $i=1;
-    
+
         return view("soumispv.programme", compact("examens",  "i"));
 
     }
@@ -74,13 +74,13 @@ class SurveillantController extends Controller
         $agents =  DB::table('users')
         ->leftJoin('surveillants', 'users.id', '=', 'surveillants.user_id')
         ->where('surveillants.examen_id', '=', $ex)
-        
+
         ->select('users.*')
         ->get();
         $user = User::findOrFail(Auth::user()->id);
-       
-        
-       
+
+
+
     //    dd($user);
         return view("soumispv.pv",compact("session",'examen','agents','user'));
 
@@ -109,6 +109,13 @@ $agentIds = array_filter($agentIds);
 // Récupération des agents depuis la base de données
 $agents = DB::table('users')->whereIn('id', $agentIds)->get();
 
+DB::table('surveillants')
+    ->whereIn('id', $agentIds)  // Mettre à jour les lignes avec des ID dans $agentIds
+    ->update([
+        'participer' => true,     // Mettre à jour la colonne participer
+        'local' => $request->local // Mettre à jour la colonne local
+    ]);
+
 // Encodage en JSON
 $json_agents = json_encode($agents);
 
@@ -126,7 +133,7 @@ $json_agents = json_encode($agents);
                 'description'=>$request->description ,
                 'examen_id' =>$request->examen_id,
             ]);
-            
+
         return redirect()->back()->with('success', 'creation avec success');
         } catch (\Throwable $th) {
             dd($th);

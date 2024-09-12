@@ -56,7 +56,7 @@
                         <th scope="col" class="px-6 py-3 text-start">
                           <div class="flex items-center gap-x-2">
                             <span class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-neutral-200">
-                              Grade 
+                              Grade
                             </span>
                           </div>
                         </th>
@@ -101,7 +101,7 @@
                             <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                               <div class="flex items-center gap-x-3">
                                 <span class="inline-flex items-center justify-center size-[38px] rounded-full bg-white border border-gray-300 dark:bg-neutral-800 dark:border-neutral-700">
-                                  <span class="font-medium text-sm text-gray-800 leading-none dark:text-neutral-200">A</span>
+                                  <span class="font-medium text-sm text-gray-800 leading-none dark:text-neutral-200">{{ substr($surveillant->name,0,1) }}</span>
                                 </span>
                                 <div class="grow">
                                   <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">{{ $surveillant->name }}</span>
@@ -113,16 +113,16 @@
                           <td class="h-px w-72 whitespace-nowrap">
                             <div class="px-6 py-3">
                               <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">{{ $surveillant->grade }}</span>
-                              
+
                             </div>
                           </td>
                           <td class="size-px whitespace-nowrap">
                             <div class="px-6 py-3">
                                 <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">{{ $surveillant->filiere }}</span>
-                                
+
                               </div>
                           </td>
-                          
+
                           <td class="size-px whitespace-nowrap">
                             <div class="px-6 py-3">
                               <span class="text-sm text-gray-500 dark:text-neutral-500">{{ $surveillant->created_at }}</span>

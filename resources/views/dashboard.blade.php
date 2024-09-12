@@ -17,7 +17,7 @@
           <div class="p-4 md:p-5">
             <div class="flex items-center gap-x-2">
               <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">
-                Total users
+                Administrateurs
               </p>
               <div class="hs-tooltip">
                 <div class="hs-tooltip-toggle">
@@ -27,7 +27,7 @@
                     <path d="M12 17h.01" />
                   </svg>
                   <span class="hs-tooltip-content hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm dark:bg-neutral-700" role="tooltip">
-                    Administrateurs
+
                   </span>
                 </div>
               </div>
@@ -43,7 +43,7 @@
                   <polyline points="16 7 22 7 22 13" />
                 </svg>
                 <span class="inline-block text-sm">
-                  1.7%
+                  {{ intval($admins * 100/$users) }}%
                 </span>
               </span>
             </div>
@@ -74,7 +74,7 @@
                   Sessions
                 </p>
               </div>
-  
+
               <div class="mt-1 flex items-center gap-x-2">
                 <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">
                   {{ $users }}
@@ -83,7 +83,21 @@
             </div>
           </div>
         <!-- End Card -->
+        <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">
+            <div class="p-4 md:p-5">
+              <div class="flex items-center gap-x-2">
+                <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">
+                  Examens
+                </p>
+              </div>
 
+              <div class="mt-1 flex items-center gap-x-2">
+                <h3 class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">
+                  {{ $examens }}
+                </h3>
+              </div>
+            </div>
+          </div>
         <!-- Card -->
 
         <!-- End Card -->
@@ -106,18 +120,147 @@
           Sessions
         </h2>
         <p class="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">
-          15
+          {{ $sessions }}
         </p>
       </div>
 
       <div>
         <span class="py-[5px] px-1.5 inline-flex items-center gap-x-1 text-xs font-medium rounded-md bg-teal-100 text-teal-800 dark:bg-teal-500/10 dark:text-teal-500">
           <svg class="inline-block size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
-          25%
+          2%
         </span>
       </div>
     </div>
     <!-- End Header -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <script>
+      window.addEventListener("load", () => {
+        // Récupérer les données PHP
+        let dataFromPHP = <?php echo json_encode($t_sessions); ?>;
+
+        // Préparer les données pour Chart.js
+        let labels = dataFromPHP.map(item => `${item.month}/${item.year}`);
+        let data = dataFromPHP.map(item => item.total_sessions);
+
+        // Créer le graphique avec Chart.js
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Total Sessions',
+              data: data,
+              borderColor: 'rgba(54, 162, 235, 1)',
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.4,
+              pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+              pointRadius: 5,
+              pointHoverRadius: 8,
+              pointHoverBackgroundColor: 'rgba(255, 99, 132, 1)',
+              pointHoverBorderColor: 'rgba(54, 162, 235, 1)',
+              pointHoverBorderWidth: 3
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+                labels: {
+                  font: {
+                    size: 16,
+                    family: 'Arial, sans-serif'
+                  },
+                  color: '#333',
+                },
+              },
+              tooltip: {
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                callbacks: {
+                  label: function(tooltipItem) {
+                    return `Sessions: ${tooltipItem.raw}`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Month/Year',
+                  color: '#333',
+                  font: {
+                    size: 14,
+                    family: 'Arial, sans-serif',
+                  }
+                },
+                ticks: {
+                  color: '#666',
+                },
+                grid: {
+                  display: false // Désactive les lignes verticales
+                }
+              },
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Total Sessions',
+                  color: '#333',
+                  font: {
+                    size: 14,
+                    family: 'Arial, sans-serif',
+                  }
+                },
+                ticks: {
+                  color: '#666',
+                },
+                grid: {
+                  drawOnChartArea: true, // Active les lignes horizontales
+                  color: 'rgba(200, 200, 200, 0.5)', // Couleur des lignes horizontales
+                  borderDash: [5, 5], // Style en pointillé
+                  lineWidth: 1, // Épaisseur des lignes
+                }
+              }
+            },
+            elements: {
+              line: {
+                borderWidth: 3,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                fill: true,
+              },
+            },
+            animation: {
+              duration: 2000,
+              easing: 'easeInOutCubic',
+            },
+            hover: {
+              mode: 'nearest',
+              intersect: true
+            },
+            layout: {
+              padding: {
+                left: 10,
+                right: 10,
+                top: 10,
+                bottom: 10,
+              }
+            }
+          }
+        });
+      });
+    </script>
 
     <div id="hs-multiple-bar-charts"></div>
   </div>
@@ -126,254 +269,14 @@
       <!-- End Card -->
     </div>
   </div>
-  <script src="../assets/vendor/lodash/lodash.min.js"></script>
-  <script src="../assets/vendor/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="../assets/js/hs-apexcharts-helpers.js"></script>
 
-  <script>
-    window.addEventListener("load", () => {
-      (function () {
-        buildChart(
-          "#hs-multiple-bar-charts",
-          (mode) => ({
-            chart: {
-              type: "bar",
-              height: 300,
-              toolbar: {
-                show: false,
-              },
-              zoom: {
-                enabled: false,
-              },
-            },
-            series: [
-              {
-                name: "Chosen Period",
-                data: [
-                  2, 4, 0, 2, 0, 2, 0, 1, 0,
-                  4, 
-                ],
-              },
-              {
 
-              },
-            ],
-            plotOptions: {
-              bar: {
-                horizontal: false,
-                columnWidth: "16px",
-                borderRadius: 0,
-              },
-            },
-            legend: {
-              show: false,
-            },
-            dataLabels: {
-              enabled: false,
-            },
-            stroke: {
-              show: true,
-              width: 8,
-              colors: ["transparent"],
-            },
-            xaxis: {
-              categories: [
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December",
-              ],
-              axisBorder: {
-                show: false,
-              },
-              axisTicks: {
-                show: false,
-              },
-              crosshairs: {
-                show: false,
-              },
-              labels: {
-                style: {
-                  colors: "#9ca3af",
-                  fontSize: "13px",
-                  fontFamily: "Inter, ui-sans-serif",
-                  fontWeight: 400,
-                },
-                offsetX: -2,
-                formatter: (title) => title.slice(0, 3),
-              },
-            },
-            yaxis: {
-              labels: {
-                align: "left",
-                minWidth: 0,
-                maxWidth: 140,
-                style: {
-                  colors: "#9ca3af",
-                  fontSize: "13px",
-                  fontFamily: "Inter, ui-sans-serif",
-                  fontWeight: 400,
-                },
-                formatter: (value) => (value >= 1000 ? `${value / 1000}` : value),
-              },
-            },
-            states: {
-              hover: {
-                filter: {
-                  type: "darken",
-                  value: 0.9,
-                },
-              },
-            },
-            tooltip: {
-              y: {
-                formatter: (value) =>
-                  `$${value >= 1000 ? `${value / 1000}` : value}`,
-              },
-              custom: function (props) {
-                const { categories } = props.ctx.opts.xaxis;
-                const { dataPointIndex } = props;
-                const title = categories[dataPointIndex];
-                const newTitle = `${title}`;
 
-                return buildTooltip(props, {
-                  title: newTitle,
-                  mode,
-                  hasTextLabel: true,
-                  wrapperExtClasses: "min-w-28",
-                  labelDivider: ":",
-                  labelExtClasses: "ms-2",
-                });
-              },
-            },
-            responsive: [
-              {
-                breakpoint: 568,
-                options: {
-                  chart: {
-                    height: 300,
-                  },
-                  plotOptions: {
-                    bar: {
-                      columnWidth: "14px",
-                    },
-                  },
-                  stroke: {
-                    width: 8,
-                  },
-                  labels: {
-                    style: {
-                      colors: "#9ca3af",
-                      fontSize: "11px",
-                      fontFamily: "Inter, ui-sans-serif",
-                      fontWeight: 400,
-                    },
-                    offsetX: -2,
-                    formatter: (title) => title.slice(0, 3),
-                  },
-                  yaxis: {
-                    labels: {
-                      align: "left",
-                      minWidth: 0,
-                      maxWidth: 140,
-                      style: {
-                        colors: "#9ca3af",
-                        fontSize: "11px",
-                        fontFamily: "Inter, ui-sans-serif",
-                        fontWeight: 400,
-                      },
-                      formatter: (value) =>
-                        value >= 1000 ? `${value / 1000}` : value,
-                    },
-                  },
-                },
-              },
-            ],
-          }),
-          {
-            colors: ["#2563eb", "#d1d5db"],
-            grid: {
-              borderColor: "#e5e7eb",
-            },
-          },
-          {
-            colors: ["#6b7280", "#2563eb"],
-            grid: {
-              borderColor: "#404040",
-            },
-          }
-        );
-      })();
-    });
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <canvas id="myChart" width="400" height="200"></canvas>
-  <script>
-    window.addEventListener("load", () => {
-        // Récupérer les données PHP
-        let dataFromPHP = <?php echo json_encode($t_sessions); ?>;
-        
-        // Préparer les données pour Chart.js
-        let labels = dataFromPHP.map(item => `${item.month}/${item.year}`);
-        let data = dataFromPHP.map(item => item.total_sessions);
-        
-        // Créer le graphique avec Chart.js
-        const ctx = document.getElementById('myChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line', // Type du graphique
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Total Sessions',
-                    data: data,
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderWidth: 2,
-                    fill: true, // Remplit la zone sous la ligne
-                    tension: 0.1 // Courbure de la ligne
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                return `Sessions: ${tooltipItem.raw}`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Month/Year'
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Total Sessions'
-                        }
-                    }
-                }
-            }
-        });
-    });
-</script>
+
+
+
+</div>
+</div>
+</div>
 
 @endsection

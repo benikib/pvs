@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Examen;
 use App\Models\SessionExamen;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,9 +21,10 @@ class HomeController extends Controller
     ->orderBy('year', 'desc')
     ->orderBy('month', 'desc')
     ->get();
+    $examens = count(Examen::all());
     //dd($t_sessions);
 
 
-        return view('dashboard', compact('admins','users','sessions','t_sessions'));
+        return view('dashboard', compact('admins','users','sessions','t_sessions','examens'));
    }
 }

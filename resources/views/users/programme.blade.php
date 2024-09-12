@@ -3,22 +3,22 @@
 @section("content")
 <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
     {{-- moadal --}}
-   
+
     <div class="p-4 md:p-5 min-h-[410px] flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">
         <!-- Header -->
         <div class="flex justify-between items-center">
           <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
           <canvas id="myChart" width="800" height="400"></canvas>
-          
+
           <script>
             window.addEventListener("load", () => {
                 // Récupérer les données PHP
                 let dataFromPHP = <?php echo json_encode($totalsurveillances); ?>;
-                
+
                 // Préparer les données pour Chart.js
                 let labels = dataFromPHP.map(item => `Session ${item.session_id}`);
                 let data = dataFromPHP.map(item => item.total);
-                
+
                 // Créer le graphique avec Chart.js
                 const ctx = document.getElementById('myChart').getContext('2d');
                 new Chart(ctx, {
@@ -69,10 +69,10 @@
           </script>
         </div>
         <!-- End Header -->
-      
+
         <div id="hs-multiple-bar-charts"></div>
       </div>
-      
+
     {{-- @include('admin.store.archiver') --}}
 
     {{-- modal --}}
@@ -91,19 +91,7 @@
           }
         }
       }'>
-        <div class="flex items-center space-x-2 mb-4">
-          <div class="flex-0">
-            <div class="relative max-w-xs">
-              <label for="hs-table-export-search" class="sr-only">Search</label>
-              <input type="text" name="hs-table-export-search" id="hs-table-export-search" class="py-2 px-3 ps-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Search for items" data-hs-datatable-search="">
-              <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-3">
-                <svg class="size-4 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.3-4.3"></path>
-                </svg>
-              </div>
-            </div>
-          </div>
+
 
           <div class="flex-1 flex items-center justify-end space-x-2">
             <div id="hs-dropdown-datatable-with-export" class="hs-dropdown [--placement:bottom-right] relative inline-flex">
@@ -230,7 +218,7 @@
                         </svg>
                       </div>
                     </th>
-                    
+
                     <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
                         <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
                          Heure
@@ -240,7 +228,7 @@
                           </svg>
                         </div>
                       </th>
-                      
+
                     <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
                         <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
                          nombre de locaux
@@ -268,10 +256,7 @@
                     <td class="p-3 whitespace-nowrap text-end text-sm font-medium">
                         <div class="flex space-x-2">
                             <!-- Bouton Voir -->
-                            <a href="{{route('pv.soumis', ['ex'=> $examen->id, 'id'=>Auth::user()->id])}}" title="Voir"
-                                class="inline-flex items-center justify-center w-8 h-8 text-gray-600 bg-white border border-gray-200 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                <i class="fas fa-eye"></i>
-                            </a>
+
 
                             <!-- Bouton Éditer -->
                             <a href="/" title="Éditer"
@@ -280,11 +265,7 @@
                             </a>
 
                             <!-- Bouton Archiver -->
-                            <a href="{{route('admin.delete', ['id'=> $examen->id])}}" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal-archiver" data-hs-overlay="#hs-focus-management-modal-archiver" title="Archiver"
-                                class="inline-flex items-center justify-center w-8 h-8 text-white bg-red-600 border border-transparent rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                                project="Voulez-vous supprimer le Projet" data-toggle="modal" data-target="#supprimer">
-                                <i class="fas fa-archive"></i>
-                            </a>
+
                         </div>
 
                     </td>

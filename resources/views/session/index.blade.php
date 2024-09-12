@@ -24,7 +24,7 @@
           }
         }
       }'>
-        <div class="flex items-center space-x-2 mb-4">
+        {{-- <div class="flex items-center space-x-2 mb-4">
           <div class="flex-0">
             <div class="relative max-w-xs">
               <label for="hs-table-export-search" class="sr-only">Search</label>
@@ -36,7 +36,7 @@
                 </svg>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <div class="flex-1 flex items-center justify-end space-x-2">
             <div id="hs-dropdown-datatable-with-export" class="hs-dropdown [--placement:bottom-right] relative inline-flex">
@@ -206,8 +206,8 @@
                     <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $session->mention }}</td>
                     <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $session->semestre }}</td>
                     <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200 "> {{$session->an_academique}}
-                       
-                    
+
+
                     </td>
                     <td class="p-3 whitespace-nowrap text-end text-sm font-medium">
                         <div class="flex space-x-2">

@@ -18,7 +18,7 @@
           <div class="p-4 md:p-5">
             <div class="flex items-center gap-x-2">
               <p class="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">
-                Total de surveillances 
+                Total de surveillances
               </p>
               <div class="hs-tooltip">
                 <div class="hs-tooltip-toggle">
@@ -27,7 +27,7 @@
                     <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
                     <path d="M12 17h.01" />
                   </svg>
-                 
+
                 </div>
               </div>
             </div>
@@ -67,7 +67,7 @@
           </div>
         </div>
         <div class="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">
-        
+
           </div>
         <!-- End Card -->
 
@@ -88,19 +88,19 @@
       <div class="p-4 md:p-5 min-h-[410px] flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">
         <!-- Header -->
         <div class="flex justify-between items-center">
-          
+
           <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
           <canvas id="myChart" width="800" height="400"></canvas>
-        
+
           <script>
             window.addEventListener("load", () => {
                 // Récupérer les données PHP
                 let dataFromPHP = <?php echo json_encode($totalsurveillances); ?>;
-                
+
                 // Préparer les données pour Chart.js
                 let labels = dataFromPHP.map(item => `Session ${item.session_id}`);
                 let data = dataFromPHP.map(item => item.total);
-                
+
                 // Créer le graphique avec Chart.js
                 const ctx = document.getElementById('myChart').getContext('2d');
                 new Chart(ctx, {
@@ -154,10 +154,10 @@
         </div>
         <!-- End Header -->
     </div>
-    
-  
-  
-  
+
+
+
+
 
 
 @endsection

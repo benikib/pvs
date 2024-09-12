@@ -22,7 +22,7 @@
           }
         }
       }'>
-        <div class="flex items-center space-x-2 mb-4">
+        {{-- <div class="flex items-center space-x-2 mb-4">
           <div class="flex-0">
             <div class="relative max-w-xs">
               <label for="hs-table-export-search" class="sr-only">Search</label>
@@ -34,7 +34,7 @@
                 </svg>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <div class="flex-1 flex items-center justify-end space-x-2">
             <div id="hs-dropdown-datatable-with-export" class="hs-dropdown [--placement:bottom-right] relative inline-flex">
@@ -161,7 +161,7 @@
                         </svg>
                       </div>
                     </th>
-                    
+
                     <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
                         <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
                          Heure
@@ -171,7 +171,7 @@
                           </svg>
                         </div>
                       </th>
-                      
+
                     <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
                         <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
                          nombre de locaux

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('examen_id')->constrained()->onDelete('cascade');
+            $table->boolean(column: 'participer')->default(false);
+            $table->string('local')->nullable();
             $table->timestamps();
         });
     }

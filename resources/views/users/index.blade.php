@@ -2,10 +2,7 @@
 @section("content")
 <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
     {{-- moadal --}}
-    <button type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal" data-hs-overlay="#hs-focus-management-modal">
-       Ajouter
-      </button>
-    @include('users.create')
+
     {{-- @include('admin.store.archiver') --}}
 
     {{-- modal --}}
@@ -24,7 +21,7 @@
           }
         }
       }'>
-        <div class="flex items-center space-x-2 mb-4">
+        {{-- <div class="flex items-center space-x-2 mb-4">
           <div class="flex-0">
             <div class="relative max-w-xs">
               <label for="hs-table-export-search" class="sr-only">Search</label>
@@ -36,7 +33,7 @@
                 </svg>
               </div>
             </div>
-          </div>
+          </div> --}}
 
           <div class="flex-1 flex items-center justify-end space-x-2">
             <div id="hs-dropdown-datatable-with-export" class="hs-dropdown [--placement:bottom-right] relative inline-flex">
