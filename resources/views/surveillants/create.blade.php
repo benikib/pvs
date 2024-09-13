@@ -11,12 +11,12 @@
   <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">email</label>
   <input type="hidden" name="examen_id" value="{{ $examen->id }}">
   <select  name="user_id" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-    <option selected="">Open this select menu</option>
+    <option selected="">Selection un surveillant</option>
     @foreach ($users_dispo as $user )
     <option value="{{ $user->id }}">{{ $user->email }}</option>
     @endforeach
-    
-   
+
+
   </select>
 </div>
 
