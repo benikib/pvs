@@ -3,10 +3,10 @@
 <div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
     {{-- moadal --}}
     <button type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal" data-hs-overlay="#hs-focus-management-modal">
-       Ajouter
+       Ajouter un bulletin
       </button>
-    @include('admin.create')
-    {{-- @include('admin.store.archiver') --}}
+    @include('juries.create')
+    {{-- @include('bulletin.store.archiver') --}}
 
     {{-- modal --}}
 
@@ -144,17 +144,71 @@
                       </div>
                     </th>
 
-                   
+                    <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
+                      <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
+                       Promotion
+                        <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path class="hs-datatable-ordering-asc:text-blue-600 dark:hs-datatable-ordering-asc:text-blue-500" d="m7 15 5 5 5-5"></path>
+                          <path class="hs-datatable-ordering-desc:text-blue-600 dark:hs-datatable-ordering-desc:text-blue-500" d="m7 9 5-5 5 5"></path>
+                        </svg>
+                      </div>
+                    </th>
+
+                    <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
+                        <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
+                         Session
+                          <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path class="hs-datatable-ordering-asc:text-blue-600 dark:hs-datatable-ordering-asc:text-blue-500" d="m7 15 5 5 5-5"></path>
+                            <path class="hs-datatable-ordering-desc:text-blue-600 dark:hs-datatable-ordering-desc:text-blue-500" d="m7 9 5-5 5 5"></path>
+                          </svg>
+                        </div>
+                      </th>
+
+                    <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
+                        <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
+                         Mention
+                          <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path class="hs-datatable-ordering-asc:text-blue-600 dark:hs-datatable-ordering-asc:text-blue-500" d="m7 15 5 5 5-5"></path>
+                            <path class="hs-datatable-ordering-desc:text-blue-600 dark:hs-datatable-ordering-desc:text-blue-500" d="m7 9 5-5 5 5"></path>
+                          </svg>
+                        </div>
+                      </th>
+
+                    <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
+                        <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
+                         Semestre
+                          <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path class="hs-datatable-ordering-asc:text-blue-600 dark:hs-datatable-ordering-asc:text-blue-500" d="m7 15 5 5 5-5"></path>
+                            <path class="hs-datatable-ordering-desc:text-blue-600 dark:hs-datatable-ordering-desc:text-blue-500" d="m7 9 5-5 5 5"></path>
+                          </svg>
+                        </div>
+                      </th>
+
+                    <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
+                      <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
+                        fichier
+                        <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path class="hs-datatable-ordering-asc:text-blue-600 dark:hs-datatable-ordering-asc:text-blue-500" d="m7 15 5 5 5-5"></path>
+                          <path class="hs-datatable-ordering-desc:text-blue-600 dark:hs-datatable-ordering-desc:text-blue-500" d="m7 9 5-5 5 5"></path>
+                        </svg>
+                      </div>
+                    </th>
+
+                    <th scope="col" class="py-2 px-3 text-end font-normal text-sm text-gray-500 --exclude-from-ordering dark:text-neutral-500">Action</th>
+                  </tr>
                 </thead>
 
                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
-                    @forelse ($admins as $admin )
+                    @forelse ($bulletins as $bulletin )
 
 
                   <tr>
-                    <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $i++ }}</td>
-                    <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $admin->user->name }}</td>
-                    <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $admin->user->email }}</td>
+                    <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $bulletin->id }}</td>
+                    <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $bulletin->promotion }}</td>
+                    <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $bulletin->session }}</td>
+                    <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $bulletin->mention }}</td>
+                    
+                    <td class="p-3 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ $bulletin->link }}</td>
                     <td class="p-3 whitespace-nowrap text-end text-sm font-medium">
                         <div class="flex space-x-2">
                             <!-- Bouton Voir -->
@@ -170,7 +224,7 @@
                             </a>
 
                             <!-- Bouton Archiver -->
-                            <a href="{{route('admin.delete', ['id'=> $admin->id])}} aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal-archiver" data-hs-overlay="#hs-focus-management-modal-archiver" title="Archiver"
+                            <a href="{{route('jyries.destroy', ['jyry'=> $bulletin->id])}} aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-focus-management-modal-archiver" data-hs-overlay="#hs-focus-management-modal-archiver" title="Archiver"
                                 class="inline-flex items-center justify-center w-8 h-8 text-white bg-red-600 border border-transparent rounded-full hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                                 project="Voulez-vous supprimer le Projet" data-toggle="modal" data-target="#supprimer">
                                 <i class="fas fa-archive"></i>

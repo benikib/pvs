@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sessio', function (Blueprint $table) {
+        Schema::create('promotions', function (Blueprint $table) {
             $table->id();
-            $table->string('Intitule')->nullable;
-            $table->string('promotion')->nullable;
-            $table->string('mention')->nullable;
-            $table->string('semestre')->nullable;
-            $table->string('an_academique')->nullable;
+            $table->string('libelle');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('promotions');
     }
 };

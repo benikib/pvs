@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JuriesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RepportingController;
 use App\Http\Controllers\SurveillantController;
@@ -12,7 +13,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::middleware('admin')->group(function () {
-    
+
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -26,24 +27,26 @@ Route::middleware('auth')->group(function () {
         Route::get('/session/{id}/examens', [RepportingController::class, 'session_examens'])->name("session.examen");
         Route::get('/session/{id}', [RepportingController::class, 'session_delete'])->name("session.delete");
         // Route::get('/session/examens', [RepportingController::class, 'session_store'])->name("examen_store");
-    
+
         Route::get('/examens', [RepportingController::class, 'examens'])->name("examens");
         Route::post('/session/examen/store', [RepportingController::class, 'examen_store'])->name("examen_store");
-    
+
         Route::get('/suveillants/{id}', [RepportingController::class, 'surveillants'])->name("surveillants");
         Route::post('/suveillants/store', [RepportingController::class, 'surveillant_store'])->name("surveillant_store");
         Route::get('/pvs/{id}', [RepportingController::class, 'pvx'])->name("pvx");
-        
+
         Route::get('/users/surveillant/{id}', [RepportingController::class, 'surveillant_delete'])->name("surveillant.delete");
         Route::get('/user/statistique/{id}', [RepportingController::class, 'statistique'])->name("statistique");
-    }); 
+    });
     Route::get('/users/pvs/{id}', [SurveillantController::class, 'index'])->name("users.pvs");
     Route::get('/users/pvs/{id}/{ex}', [SurveillantController::class, 'pv'])->name("pv.soumis");
     Route::get('/users/programme/{id}', [SurveillantController::class, 'programme'])->name("programme");
     Route::post('/users/pvs/store', [SurveillantController::class, 'pv_store'])->name("soumis.stor");
-  
+
+
 
 
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/web_jyries.php';
