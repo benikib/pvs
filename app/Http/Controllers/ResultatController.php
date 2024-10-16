@@ -12,7 +12,7 @@ class ResultatController extends Controller
      */
     public function index()
     {
-        //
+        return view('resultats.index');
     }
 
 
@@ -63,5 +63,5 @@ class ResultatController extends Controller
     {
         //
     }
-    
+
 }

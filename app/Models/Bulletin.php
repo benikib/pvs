@@ -14,6 +14,7 @@ class Bulletin extends Model
         'mention' ,
         'promotion' ,
         'semestre' ,
+        'an_academique' ,
         //'jurie_id' ,
 
 

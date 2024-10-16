@@ -1,8 +1,8 @@
 @extends("layouts.default")
 @section("content")
-<div class="p-4 sm:p-6 space-y-4 sm:space-y-6">
+<div class="p-4 space-y-4 sm:p-6 sm:space-y-6">
     {{-- moadal --}}
-    
+
     {{-- @include('admin.store.archiver') --}}
 
     {{-- modal --}}
@@ -21,13 +21,13 @@
           }
         }
       }'>
-        {{-- <div class="flex items-center space-x-2 mb-4">
+        {{-- <div class="flex items-center mb-4 space-x-2">
           <div class="flex-0">
             <div class="relative max-w-xs">
               <label for="hs-table-export-search" class="sr-only">Search</label>
-              <input type="text" name="hs-table-export-search" id="hs-table-export-search" class="py-2 px-3 ps-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Search for items" data-hs-datatable-search="">
-              <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-3">
-                <svg class="size-4 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <input type="text" name="hs-table-export-search" id="hs-table-export-search" class="block w-full px-3 py-2 text-sm border-gray-200 rounded-lg shadow-sm ps-9 focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Search for items" data-hs-datatable-search="">
+              <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+                <svg class="text-gray-400 size-4 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="11" cy="11" r="8"></circle>
                   <path d="m21 21-4.3-4.3"></path>
                 </svg>
@@ -35,16 +35,16 @@
             </div>
           </div> --}}
 
-         
+
         </div>
 
         <div class="overflow-x-auto min-h-[520px] ">
-          <div class="min-w-full inline-block align-middle">
+          <div class="inline-block min-w-full align-middle">
             <div class="overflow-hidden">
               <table class="min-w-full">
                 <thead class="border-b border-gray-200 dark:border-neutral-700">
              @foreach ($header as $entete )
-             <th scope="col" class="py-1 group text-start font-normal focus:outline-none">
+             <th scope="col" class="py-1 font-normal group text-start focus:outline-none">
                 <div class="py-1 px-2.5 inline-flex items-center border border-transparent text-sm text-gray-500 rounded-md hover:border-gray-200 dark:text-neutral-500 dark:hover:border-neutral-700">
              {{ $entete}}
                   <svg class="size-3.5 ms-1 -me-0.5 text-gray-400 dark:text-neutral-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -53,19 +53,19 @@
                   </svg>
                 </div>
               </th>
-                 
-             @endforeach
-                    
 
-                   
+             @endforeach
+
+
+
                 </thead>
 
                 <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
                     <tr>
                   @forelse ($data as $user )
-                      <td class="p-3 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ $user }}</td> 
+                      <td class="p-3 text-sm font-medium text-gray-800 whitespace-nowrap dark:text-neutral-200">{{ $user }}</td>
                   @empty
-                      
+
                   @endforelse
                 </tr>
 
@@ -75,7 +75,7 @@
           </div>
         </div>
 
-        <div class="flex items-center space-x-1 mt-4 hidden" data-hs-datatable-paging="">
+        <div class="flex items-center hidden mt-4 space-x-1" data-hs-datatable-paging="">
           <button type="button" class="p-2.5 min-w-[40px] inline-flex justify-center items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" data-hs-datatable-paging-prev="">
             <span aria-hidden="true">«</span>
             <span class="sr-only">Previous</span>
@@ -91,6 +91,7 @@
     </div>
 </div>
 </div>
+
 
 
 @endsection

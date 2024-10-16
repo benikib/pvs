@@ -34,6 +34,7 @@ class EtudiantController extends Controller
 
      public function store(Request $request)
      {
+
        // dd($request);
          try {
              $request->validate([
@@ -73,34 +74,38 @@ class EtudiantController extends Controller
                     for($i = 0; $i<$chunksize; $i++)
                     {
                         $data = fgetcsv($handle);
-                        
-                       
+
+
 
                         if($data === false)
                         {
                             break;
                         }
                         elseif( $data[0]== $request->nom){
+
                             return view('resultats.affiche', compact('header','data'));
                         }
                         $chunkdata[] = $data;
-                        
+
                     }
 
                     $this->getchunkdata($chunkdata);
                 }
+
                 fclose($handle);
 
                 // Lire le contenu du fichier
                 // Par exemple, si c'est un fichier texte
-                //dd($handle);
+                return redirect()->back()->with('error', 'etudiant non trouvé');
             } else {
-                dd("Fichier non trouvé !");
+                return redirect()->back()->with('error', 'voir le bureau du jury');
+                // dd("Fichier non trouvé !");
             }
 
-        dd($chunkdata);
+        // dd($chunkdata);
             // return redirect()->route('import.members')->with('success', 'Data has been added successfully.');
          } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'veuillez recommencer');
              //return redirect()->route('import.members')->with('error', "Une érreur s'est produite");
          }
      }

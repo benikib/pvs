@@ -15,7 +15,8 @@ class JuriesController extends Controller
     public function index()
     {
         $bulletins = Bulletin::all();
-        return view('resultats.index');
+
+        return view('juries.index',compact('bulletins'));
 
         //return view('juries.index', compact('bulletins'));
     }
@@ -33,6 +34,7 @@ class JuriesController extends Controller
      */
     public function store(Request $request)
     {
+
         try {
           //  dd($request->promotion);
             $validated = $request->validate([
@@ -71,7 +73,7 @@ class JuriesController extends Controller
 
 
         } catch (\Throwable $th) {
-            dd($th );
+         
             return redirect()->back()->with('erreur', 'error');
         }
 
@@ -83,7 +85,7 @@ class JuriesController extends Controller
     public function show(Juries $juries)
     {
         $juries = Bulletin::find($juries->id);
-        return view('juries.show', compact('juries'));
+      //  return view('juries.show', compact('juries'));
     }
 
     /**
@@ -91,7 +93,7 @@ class JuriesController extends Controller
      */
     public function edit(Juries $juries)
     {
-        return view('juries.edit', compact('juries'));
+       // return view('juries.edit', compact('juries'));
     }
 
     /**

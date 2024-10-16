@@ -31,10 +31,11 @@ class AdminMiddleware
 
         if ($admin) {
             // L'utilisateur est un administrateur, continuer la requête
-            return redirect()->route('juries', ['id' => $user->id]);  
-        }
+            return $next($request);
 
+        }
+        return redirect()->route('resultat');
         // L'utilisateur n'est pas un administrateur, rediriger vers une autre page
-        return $next($request);
+
     }
 }

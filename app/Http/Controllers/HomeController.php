@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $bulletins = Bulletin::all();
-        
-    return view('resultats.index', compact('bulletins'));
+
+        return view('juries.index', compact('bulletins'));
     }
 }
