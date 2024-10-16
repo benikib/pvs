@@ -73,7 +73,7 @@
     <body class="bg-gray-50 dark:bg-neutral-900">
 
             @include('layouts.menu')
-            {{-- @include('layouts.sidebar') --}}
+             @include('layouts.sidebar')
 
 
             <!-- Page Content -->

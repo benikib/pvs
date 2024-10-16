@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string(column: 'semestre');
             $table->string(column: 'mention');
             $table->string(column: 'session');
+            $table->string('an_academique');
             $table->string('link');
             $table->timestamps();
         });

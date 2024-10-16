@@ -55,20 +55,20 @@ class JuriesController extends Controller
                     'mention' => $request->mention,
                     'semestre' => $request->semestre,
                     'session' => $request->sessions,
+                    'an_academique' => $request->an_academique,
                     'link' =>$filePath,
                 ]);
-                
 
+                return redirect()->back()->with('success', 'creation avec success');
             }
 
 
+            return redirect()->back()->with('success', 'creation avec success');
 
 
 
 
 
-
-                dd($request);
 
         } catch (\Throwable $th) {
             dd($th );
