@@ -35,7 +35,7 @@ class EtudiantController extends Controller
      public function store(Request $request)
      {
 
-       // dd($request);
+           // dd($request);
          try {
              $request->validate([
                  //'import_csv' => 'required|mimes:csv',
@@ -45,6 +45,11 @@ class EtudiantController extends Controller
        $file=  DB::table('bulletins')
 
             ->where('promotion',  $request->promotion)
+            ->where('mention',  $request->mention)
+            ->where('semestre',  $request->semestre)
+            ->where('an_academique', $request->an_academique)
+            ->where('session',  $request->sessions)
+
 
 
 
@@ -54,7 +59,7 @@ class EtudiantController extends Controller
 
 
 
-            // dd($file[0]->link);
+
             $link = $file[0]->link;
 
              if (Storage::exists($link)) {
@@ -105,6 +110,7 @@ class EtudiantController extends Controller
         // dd($chunkdata);
             // return redirect()->route('import.members')->with('success', 'Data has been added successfully.');
          } catch (\Exception $e) {
+            dd($e);
             return redirect()->back()->with('error', 'veuillez recommencer');
              //return redirect()->route('import.members')->with('error', "Une érreur s'est produite");
          }

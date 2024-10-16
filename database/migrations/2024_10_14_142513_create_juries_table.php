@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('juries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('promotion_id')->constrained('promotions');
+            $table->foreignId(column: 'user_id')->constrained('users');
             $table->string('effectif');
 
             $table->timestamps();

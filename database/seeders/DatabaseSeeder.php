@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Juries;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,8 +17,13 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Juries2',
+            'email' => 'juries2@gmail.com',
+        ]);
+        Juries::factory()->create([
+            'effectif' => '12',
+            'user_id' => 1,
+            'promotion_id' => 1,
         ]);
     }
 }

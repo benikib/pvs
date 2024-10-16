@@ -1,4 +1,4 @@
-@extends('layouts.modal')
+{{-- @extends('layouts.modal')
 @section('title')
 <h3 id="hs-focus-management-modal-label" class="font-bold text-gray-800 dark:text-white">
  Resultat
@@ -10,26 +10,26 @@
 
     <div class="p-4 overflow-y-auto">
         <div class="p-4 overflow-y-auto">
-            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nom complet</label>
-            <input required type="text" name="nom" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 dark:text-neutral-400" placeholder="Nom complet" autofocus="">
+            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Nom complet</label>
+            <input required type="text" name="nom" id="input-label" class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 dark:text-neutral-400" placeholder="Nom complet" autofocus="">
           </div>
         </div>
     <div class="p-4 overflow-y-auto">
       <div class="p-4 overflow-y-auto">
-          <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Mention</label>
-          <input required type="text" name="mention" id="input-label" class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 dark:text-neutral-400" placeholder="Mention" autofocus="">
+          <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Faculté</label>
+          <input required type="text" name="mention" id="input-label" class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 dark:text-neutral-400" placeholder="Mention" autofocus="">
         </div>
         <div class="p-4 overflow-y-auto">
-          <select required name="sessions" class="py-3 px-4 pe-9 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600">
+          <select required name="sessions" class="block w-full px-4 py-3 text-sm bg-gray-100 border-transparent rounded-lg pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600">
               <option selected="">Sessions </option>
               <option value='Premier session '>Premiere Session </option>
               <option value='Deuxième session '>Deuxième session </option>
               <option value='Session speciale '>Session speciale</option>
             </select>
         </div>
-      <label for="promotion" class="block text-sm font-medium mb-2 dark:text-white">Promotion</label>
+      <label for="promotion" class="block mb-2 text-sm font-medium dark:text-white">Promotion</label>
       <div class="relative">
-          <select required id="promotion" name="promotion" class="appearance-none py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 transition-all duration-300 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 shadow-sm">
+          <select required id="promotion" name="promotion" class="block w-full px-4 py-3 text-sm transition-all duration-300 border border-gray-300 rounded-lg shadow-sm appearance-none focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
               <option value="" selected="">Sélectionnez Promotion</option>
               <option value="L1">L1</option>
               <option value="L2">L2</option>
@@ -48,9 +48,9 @@
 
 
    <div class="p-4 overflow-y-auto">
-      <label for="semestre" class="block text-sm font-medium mb-2 dark:text-white">Semestre</label>
+      <label for="semestre" class="block mb-2 text-sm font-medium dark:text-white">Semestre</label>
       <div class="relative">
-          <select required id="semestre" name="semestre" class="appearance-none py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 transition-all duration-300 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 shadow-sm">
+          <select required id="semestre" name="semestre" class="block w-full px-4 py-3 text-sm transition-all duration-300 border border-gray-300 rounded-lg shadow-sm appearance-none focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
               <option value="" selected="">Sélectionnez Semestre</option>
           </select>
           <!-- Icone pour le champ -->
@@ -91,8 +91,8 @@
   </script>
 
 
-    <div class="mt-6 grid">
-      <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Valider</button>
+    <div class="grid mt-6">
+      <button type="submit" class="inline-flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Valider</button>
     </div>
   </form>
-@endsection
+@endsection --}}

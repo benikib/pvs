@@ -9,13 +9,13 @@
     @csrf
     <div class="p-4 overflow-y-auto">
         <div class="p-4 overflow-y-auto">
-            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Mention</label>
+            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Faculté</label>
             <input required type="text" name="mention" id="input-label" class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:placeholder-neutral-500 dark:text-neutral-400" placeholder="Mention" autofocus="">
           </div>
           <div class="p-4 overflow-y-auto">
             <select required name="sessions" class="block w-full px-4 py-3 text-sm bg-gray-100 border-transparent rounded-lg pe-9 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:focus:ring-neutral-600">
                 <option selected="">Sessions </option>
-                <option value='Premier session '>Premiere Session </option>
+                <option value='Premiere session '>Premiere Session </option>
                 <option value='Deuxième session '>Deuxième session </option>
                 <option value='Session speciale '>Session speciale</option>
               </select>

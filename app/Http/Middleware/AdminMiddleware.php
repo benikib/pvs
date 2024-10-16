@@ -27,7 +27,7 @@ class AdminMiddleware
         }
 
         // Vérifier si l'utilisateur est un administrateur
-        $admin = Juries::where('id', $user->id)->first();
+        $admin = Juries::where('user_id', $user->id)->first();
 
         if ($admin) {
             // L'utilisateur est un administrateur, continuer la requête

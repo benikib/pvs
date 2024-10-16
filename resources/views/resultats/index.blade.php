@@ -171,7 +171,8 @@
 
 
 
-                 <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-3" aria-label="Close">
+                 <button type="button" id="resetButton2" class="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-3" aria-label="Close">
+
                      <span class="sr-only">Close</span>
                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -192,7 +193,7 @@
                 <div class="mb-4">
                     <label for="session" class="block text-gray-200">Sessions</label>
 
-                    <select id="session"  name="session" class="w-full p-2 mt-1 text-white bg-gray-700 rounded">
+                    <select id="session"  name="sessions" class="w-full p-2 mt-1 text-white bg-gray-700 rounded">
                         <option value="" selected="">Sélectionnez session</option>
                         <option value="Premiere session">Premiere session</option>
                         <option value="Deuxieme session">Deuxieme session</option>
@@ -205,7 +206,7 @@
                 <div class="mb-4">
                     <label for="an_acaddemique" class="block text-gray-200">Année académique</label>
 
-                    <select id="an_acaddemique" name="an_acaddemique" class="w-full p-2 mt-1 text-white bg-gray-700 rounded">
+                    <select id="an_acaddemique" name="an_academique" class="w-full p-2 mt-1 text-white bg-gray-700 rounded">
                         <option value="" selected="">Sélectionnez Année</option>
                         @for ($year = now()->year - 1; $year <= now()->year + 3; $year++)
                             <option value="{{ $year }}-{{ $year + 1 }}">{{ $year }}-{{ $year + 1 }}</option>
@@ -213,7 +214,7 @@
                             </select>
 
 
-                     <label for="mention" class="block mb-2 text-sm font-medium text-gray-200">Mention</label>
+                     <label for="mention" class="block mb-2 text-sm font-medium text-gray-200">Faculté</label>
 
                      <input required type="text" name="mention" id="mention" class="w-full p-2 mt-1 text-white bg-gray-700 rounded">
 
@@ -298,6 +299,6 @@
           }
       });
    </script>
-
+   
 
 </html>
