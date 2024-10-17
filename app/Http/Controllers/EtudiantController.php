@@ -110,7 +110,7 @@ class EtudiantController extends Controller
         // dd($chunkdata);
             // return redirect()->route('import.members')->with('success', 'Data has been added successfully.');
          } catch (\Exception $e) {
-            dd($e);
+            //($e);
             return redirect()->back()->with('error', 'veuillez recommencer');
              //return redirect()->route('import.members')->with('error', "Une érreur s'est produite");
          }
